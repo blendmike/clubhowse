@@ -1,0 +1,57 @@
+    <div ng-include="'partials/header.html'"></div>
+
+    <div class="emblem-start">
+
+<header>
+        <div class="cover"></div>
+        <div class="container">
+            <div class="inner-container" ng-init="runHomeSize();">
+                <div class="intro-text col-md-12">
+                    <div class="intro-lead-in">Find your mortgage <span>today</span>.</div>
+                    <div class="intro-heading">Get approved in less than 30min, then shop <span>personalized</span> rates on loans you're approved for.</div>
+                    <button ng-click="apply()" class="apply">Get Started</button>
+                </div>
+            </div>
+
+                 <section id="services">
+                  <div class="container">
+          
+                    <div class="row text-center service-container">
+                        <div class="col-md-4 service prepare">
+                          <div class="inner">
+                            <h4 class="service-heading">Get approved instantly</h4>
+                            <p>Fill out a brief application and we'll show you loans you're approved for.</p>
+                          </div>
+                        </div>
+                        <div class="col-md-4 service calculate">
+                          <div class="inner">
+                            <h4 class="service-heading">Shop for your loan</h4>
+                            <p>Compare personalized rates for loans you’re already approved for.</p>
+                           </div> 
+                        </div>
+                        <div class="col-md-4 service compare">
+                          <div class="inner">
+                            <h4 class="service-heading">Close with control</h4>
+                            <p>With your permission, we’ll send your info to the lender to close the loan.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+            </div>
+    </header>
+</div>
+     <div ng-include="'partials/footer.html'"></div>
+   
+
+    <!-- Services Section -->
+   
+
+   <script type='text/javascript'>
+    $(document).ready(function() {
+         $('.carousel').carousel({
+             interval: 6000,
+             duration : 2000
+         })
+    });    
+</script>

@@ -1,0 +1,113 @@
+     <div ng-include="'partials/header.html'"></div>
+
+<div class="col-md-12 cur-mor-rates" style="padding:0;margin-top:65px;display:block;height:820px;background:#FCFEFF;">
+
+
+<div class="col-md-3 large">
+   
+   <div class="inner-container">
+      <article>
+        <label>Purchase Price</label>
+        <input type="text" value="800,000" />
+      </article>
+
+      <article class="down-payment">
+        <label>Down Payment</label>
+        <input type="text" class="num" value="160,000"/>
+        <input type="text" class="per" value="20"/>
+      </article>
+
+
+      <article class="monthly-payment">
+        <label for="amount">Monthly Payment</label>
+        <div id="slider-range"></div>
+        <span id="amountone"></span>
+        <span id="amounttwo"></span>
+      </article>
+
+
+      <a href="#">Advanced</a>
+
+        <div class="questions">
+            <label>Questions?</label>
+            <span>Contact your loan team </span>
+        </div>
+
+   </div>
+
+</div>
+
+
+<div class="col-md-8">
+    <div class="inner-container">
+          <h1> Your Current Mortgage Rates</h1>
+
+          <ul class="rates-top">
+            <li class="cur-filter"><a href="#">Relevance</a></li>
+            <li><a href="#">APR</a></li>
+            <li><a href="#">Fees</a></li>
+            <li><a href="#">More</a></li>
+            <li><a href="#">Filter</a></li>
+          </ul>
+
+          <ul class="rates-results col-md-12" ng-init="runTooltip()">
+                              <img class="tool-tip" src="../img/tooltip.png" />
+
+          <li ng-repeat="finalRate in finalRates | orderBy:'-match'"  class="col-md-12">
+               
+
+                <div class="col-md-2 left">
+                  <img src="img/lender-logos/{{finalRate.lender}}.jpg" />
+                
+              </div>
+              <div class="col-md-7 mid">
+
+                <p>
+                   <label><span ng-class="finalRate.match >= 65 ? 'green' : ( finalRate.match >= 35 ? 'orange' : 'red')"style="width:{{finalRate.match}}%;"></span></label>
+                    <span class="match">{{finalRate.match}}% match</span>
+                </p>
+                 <span class="apr">{{finalRate.apr}}% APR</span>
+                <span class="mo-pay">${{finalRate.mopayments}}/mo</span>
+                <p>
+                  <span class="mo-type">{{finalRate.type}}</span>
+                  <span class="mo-rate">{{finalRate.rate}}% Rate</span>
+                  <span class="mo-fees">${{finalRate.fees}} in fees</span>
+                </p>
+              </div>
+              <div class="col-md-3 right">
+                <button class="view-rate" ng-click="overlay();">View</button>
+                <a href="javascript:void(0)" class="ctl" ng-click="overlay('small');">Close this loan</a>
+              </div>
+             
+                </li>
+
+              </ul>
+            
+    </div>
+
+</div>
+<img class="mortech" src="../img/mortech.png" />
+</div>
+
+
+
+
+
+
+     <div ng-include="'partials/footer.html'"></div>
+    
+   <div class="overlay overlay-contentscale">
+    <div class="overlay-bg1" ng-click="overlay()"></div>
+    <div class="overlay-bg2" ng-click="overlay()"></div>
+    <div class="overlay-content">
+                 <div ng-include="'partials/partial5.html'"></div>
+    </div>
+    <div class="overlay-content overlay-small">
+                 <div ng-include="'partials/partial6.html'"></div>
+    </div>
+</div>
+   
+  
+    
+
+

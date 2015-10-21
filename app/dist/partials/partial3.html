@@ -1,0 +1,168 @@
+<div class="col-md-12 zen-app" ng-init="sizeControl()" style="margin-top:65px;display:block;height:100%;background:#FCFEFF;padding:0;">
+<div class="col-md-3">
+        <div class="left-nav">
+             <div class="est-completion">
+            <label>Left to complete</label>
+            <span> 23 mins</span>
+        </div>
+            <ul>
+
+                                   
+                <li ng-repeat="pricemessage in pricingMessages" class="{{pricemessage[2].step | removeSpacesThenLowercase}}" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                {{pricemessage[2].step}}
+                </li>
+            </ul>
+        </div>
+
+   
+        <div class="questions">
+            <label>Questions?</label>
+            <span>Contact your loan team </span>
+        </div>
+
+
+</div>
+<div class="col-md-6" style="background:#fff;padding:50px;height:100%;">
+ <span ng-repeat="pricingMessage in getValues(messageId)" class="{{pricingMessage.type}}-content slide-content {{pricingMessage.pause}}" ng-class="{'active': $first}" run-presentation>
+        <img width="60px" class="msg-loader" src="https://blend-borrower.blendlabs.com/assets/images/app-loader.gif" />  
+       <span ng-if="pricingMessage.type == 'message'">{{pricingMessage.text}}</span>
+       <span ng-if="pricingMessage.type == 'button'" class="button-wrap">
+                <button ng-click="updateMessageId(messageId - 1)" ng-class="{ 'hide' : messageId == 1 }" class="back">Back</button>
+             <button ng-click="updateMessageId(pricingMessage.next, pricingMessage.captureValue)" type="submit" class="continue">{{pricingMessage.text}}</button>
+
+
+
+       </span>
+
+       <span ng-if="pricingMessage.type == 'pricingPage'" class="button-wrap pricing-wrap">
+              
+
+            <div class="dropdown">
+            <ul id="nav">
+    <li class="parent" ng-click="changePricingOptions()">
+    <span class="dropdown-text">Lowest Monthly Payment</span>
+        <ul class="sub-nav">
+            <li ng-class='{active:$first}' ng-repeat="dd in pricingMessage.options" ng-click="cardContent($index,dd,$event)">{{dd}}</li>
+        </ul>
+    </li>
+</ul>
+                
+              </ul>
+            </div>
+        <div class="pricing-options scrollbar">
+              <div class="col-md-12 card animation" ng-repeat="card in cardType(cardTypeId)" ng-if="!card.note">
+                <div class="row">
+                    <p ng-if="card.type == 'tif'" class="monthlyPayment col-md-6">
+                        {{card.tif}}
+                        <span>Total Interest and Fees</span>
+                    </p>
+                    <p ng-if="card.type == 'mp'" class="monthlyPayment col-md-6">
+                        {{card.monthlyPayment}}
+                        <span>Monthly Payment</span>
+                    </p>
+
+<!--                <p class="monthlyPayment col-md-6">
+                        {{card.monthlyPayment}}
+                        <span>Monthly Payment</span>
+                    </p>
+ -->                <p class="rateType col-md-6">
+                        {{card.rateType}}
+                    </p>
+                </div>
+                <div class="row">
+                    <span class="col-md-6">{{card.apr}}</span>
+                    <label class="col-md-6">Interest Rate / APR</label>
+                </div>
+
+                <div ng-if="card.type == 'mp'" class="row">
+                    <span class="col-md-6">{{card.tif}}</span>
+                    <label class="col-md-6">Total Interest + Fees</label>
+                </div>
+
+                <div ng-if="card.type == 'tif'" class="row">
+                    <span class="col-md-6">{{card.monthlyPayment}}</span>
+                    <label class="col-md-6">Monthly Payment</label>
+                </div>
+
+                <div  class="row">
+                    <span class="col-md-6">{{card.ctc}}</span>
+                    <label class="col-md-6">Cash-to-Close</label>
+                </div>
+                 
+
+                <div class="row selection-button">
+                    <span> View all details and disclosures </span>
+                  
+
+                <button ng-click="choosePricingOption(cardTypeId, $index);">
+                    <span>+ Select This Option</span>
+                </button>
+
+
+                </div>
+              </div>
+
+              <div class="col-md-12 card" ng-repeat="card in cardType(cardTypeId)" ng-if="card.note">
+               
+
+                <div class="row">
+                    <span> {{card.note}} </span>
+                    <button ng-click="toggle = !toggle" class="help-button">
+                        <span ng-show="toggle">X Remove Selection</span>
+                        <span ng-hide="toggle">+ Select This Option</span>
+                    </button>
+                    
+                </div>
+              </div>
+            </div>
+       </span>
+
+    </span>
+    </div>
+    <div class="col-md-3 reco-cont">
+    <style>
+        .app-mortgages li{
+            display: none;
+        }
+    </style>
+     <ul class="app-mortgages">
+     <li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}">
+                <p>
+                <label>Eligible for up to</label>
+                <span>${{appMortgages.eligible}}</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span>${{appMortgages.mopayments}}/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span>{{appMortgages.apr}}%</span>
+                </p>
+             
+                </li>
+    </ul>
+
+
+    <ul class="filter-mortgages" ng-init="runTooltip();">
+            <h3>Your recommendations </br> based on borrowers like you:</h3>
+                              <img class="tool-tip" src="../img/tooltip.png" />
+
+     <li ng-repeat="mortgagePushs in loanFilter(messageId)">
+                <img src="../img/lender-logos/{{mortgagePushs.lender}}.jpg" />
+                <p>
+                    <label><span ng-class="mortgagePushs.match >= 65 ? 'green' : ( mortgagePushs.match >= 35 ? 'orange' : 'red')" style="width:{{mortgagePushs.match}}%;"></span></label>
+                    <span class="match">{{mortgagePushs.match}}% match</span>
+                </p>
+                <span class="apr">{{mortgagePushs.apr}}% APR</span>
+                <span class="mo-pay">${{mortgagePushs.mopayments}}/mo</span>
+                <span class="mo-type">{{mortgagePushs.type}}</span>
+                <span class="mo-fees">${{mortgagePushs.fees}} in fees</span>
+             
+                </li>
+
+                <div class="grad-overlay"></div>
+    </ul>
+<!--          <div class="best-mortgages"></div> -->
+    </div>
+</div>

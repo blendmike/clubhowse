@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://localhost:5000/#!/apply#page-top -->
+<html ng-app="SampleApp" class="ng-scope"><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Easyloan Mortgage</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="./Easyloan Mortgage_files/bootstrap.css">
+    <link rel="stylesheet" href="./Easyloan Mortgage_files/font-awesome.css">
+      <link rel="stylesheet" href="./Easyloan Mortgage_files/jquery-ui.css">
+    <link rel="stylesheet" href="./Easyloan Mortgage_files/animate.css">
+    <link rel="stylesheet" href="./Easyloan Mortgage_files/main.css">
+
+
+  <style type="text/css"></style></head>
+  <body class="loaded">
+    <div class="container">
+          <!-- views -->
+      <!-- ngView:  --><div ng-view="" class="ng-scope" style="">     <!-- ngInclude: 'partials/header.html' --><div ng-include="&#39;partials/header.html&#39;" class="ng-scope"><!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top ng-scope app-mode">
+        <div class="container inner-container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll app-mode" href="http://localhost:5000/#page-top"></a>
+            </div>
+
+            
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+
+     <!-- ngInclude: 'partials/partial3.html' --><div ng-include="&#39;partials/partial3.html&#39;" class="ng-scope"><div class="col-md-12 zen-app ng-scope" ng-init="sizeControl()" style="margin-top: 65px; display: block; height: 750px; padding: 0px; background: rgb(252, 254, 255);">
+<div class="col-md-3">
+        <div class="left-nav">
+             <div class="est-completion">
+            <label>Left to complete</label>
+            <span> 23 mins</span>
+        </div>
+            <ul>
+
+                                   
+                <!-- ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="gettingtoknowyou" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                Getting to Know You
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="taxreturns" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                Tax Returns
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="creditreport current" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                Credit Report
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="w2s" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                W2s
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="paystubs" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                Paystubs
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><li ng-repeat="pricemessage in pricingMessages" class="financialstatements" ng-class="{current : $first}" ng-if="pricemessage[2].show.length">
+                Financial Statements
+                </li><!-- end ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages --><!-- ngIf: pricemessage[2].show.length --><!-- end ngRepeat: pricemessage in pricingMessages -->
+            </ul>
+        </div>
+
+   
+        <div class="questions">
+            <label>Questions?</label>
+            <span>Contact your loan team </span>
+        </div>
+
+
+</div>
+<div class="col-md-6" style="background:#fff;padding:50px;height:100%;">
+ <!-- ngRepeat: pricingMessage in getValues(messageId) --><span ng-repeat="pricingMessage in getValues(messageId)" class="message-content slide-content  show" ng-class="{&#39;active&#39;: $first}" run-presentation="" style="">
+        <img width="60px" class="msg-loader" src="./Easyloan Mortgage_files/app-loader.gif" style="display: none;">  
+       <!-- ngIf: pricingMessage.type == 'message' --><span ng-if="pricingMessage.type == &#39;message&#39;" class="ng-binding ng-scope" style="display: inline;">Pulling your credit...</span><!-- end ngIf: pricingMessage.type == 'message' -->
+       <!-- ngIf: pricingMessage.type == 'button' -->
+
+       <!-- ngIf: pricingMessage.type == 'pricingPage' -->
+
+    </span><!-- end ngRepeat: pricingMessage in getValues(messageId) --><span ng-repeat="pricingMessage in getValues(messageId)" class="message-content slide-content show" ng-class="{&#39;active&#39;: $first}" run-presentation="" style="">
+        <img width="60px" class="msg-loader" src="./Easyloan Mortgage_files/app-loader.gif" style="display: none;">  
+       <!-- ngIf: pricingMessage.type == 'message' --><span ng-if="pricingMessage.type == &#39;message&#39;" class="ng-binding ng-scope" style="display: inline;">Alright, we're all done pulling your credit report!</span><!-- end ngIf: pricingMessage.type == 'message' -->
+       <!-- ngIf: pricingMessage.type == 'button' -->
+
+       <!-- ngIf: pricingMessage.type == 'pricingPage' -->
+
+    </span><!-- end ngRepeat: pricingMessage in getValues(messageId) --><span ng-repeat="pricingMessage in getValues(messageId)" class="button-content slide-content yes active" ng-class="{&#39;active&#39;: $first}" run-presentation="" style="">
+        <img width="60px" class="msg-loader" src="./Easyloan Mortgage_files/app-loader.gif">  
+       <!-- ngIf: pricingMessage.type == 'message' -->
+       <!-- ngIf: pricingMessage.type == 'button' --><span ng-if="pricingMessage.type == &#39;button&#39;" class="button-wrap ng-scope">
+                <button ng-click="updateMessageId(messageId - 1)" ng-class="{ &#39;hide&#39; : messageId == 1 }" class="back">Back</button>
+             <button ng-click="updateMessageId(pricingMessage.next, pricingMessage.captureValue)" type="submit" class="continue ng-binding">Continue</button>
+
+
+
+       </span><!-- end ngIf: pricingMessage.type == 'button' -->
+
+       <!-- ngIf: pricingMessage.type == 'pricingPage' -->
+
+    </span><!-- end ngRepeat: pricingMessage in getValues(messageId) -->
+    </div>
+    <div class="col-md-3 reco-cont on">
+    <style>
+        .app-mortgages li{
+            display: none;
+        }
+    </style>
+     <ul class="app-mortgages">
+     <!-- ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$795,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$2,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.098%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$4,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,000</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$3,680/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.000%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope" style="">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,000</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$3,680/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.250%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope" style="">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,000</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$3,680/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.250%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope" style="">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,000</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$3,680/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.250%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope show" style="">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$795,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$2,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$4,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$495,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$2,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">3.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$795,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$2,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$595,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$4,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">4.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage --><li ng-repeat="appMortgages in appMortgage" ng-class="{show: $index==messageId}" class="ng-scope">
+                <p>
+                <label>Eligible for up to</label>
+                <span class="ng-binding">$495,400</span>
+                </p>
+                <p>
+                <label>Payments as low as</label>
+                <span class="ng-binding">$2,146/mo</span>
+                </p>
+                <p>
+                <label>Rates as low as</label>
+                <span class="ng-binding">3.068%</span>
+                </p>
+             
+                </li><!-- end ngRepeat: appMortgages in appMortgage -->
+    </ul>
+
+
+    <ul class="filter-mortgages" ng-init="runTooltip();">
+            <h3>Your recommendations <br> based on borrowers like you:</h3>
+                              <img class="tool-tip" src="./Easyloan Mortgage_files/tooltip.png">
+
+     <!-- ngRepeat: mortgagePushs in loanFilter(messageId) --><li ng-repeat="mortgagePushs in loanFilter(messageId)" class="ng-scope" style="">
+                <img src="./Easyloan Mortgage_files/citi.jpg">
+                <p>
+                    <label><span ng-class="mortgagePushs.match &gt;= 65 ? &#39;green&#39; : ( mortgagePushs.match &gt;= 35 ? &#39;orange&#39; : &#39;red&#39;)" style="width:65%;" class="green"></span></label>
+                    <span class="match ng-binding">65% match</span>
+                </p>
+                <span class="apr ng-binding">4.098% APR</span>
+                <span class="mo-pay ng-binding">$2,146/mo</span>
+                <span class="mo-type ng-binding">30yr Fixed Rate</span>
+                <span class="mo-fees ng-binding">$6,310 in fees</span>
+             
+                </li><!-- end ngRepeat: mortgagePushs in loanFilter(messageId) --><li ng-repeat="mortgagePushs in loanFilter(messageId)" class="ng-scope" style="">
+                <img src="./Easyloan Mortgage_files/citi.jpg">
+                <p>
+                    <label><span ng-class="mortgagePushs.match &gt;= 65 ? &#39;green&#39; : ( mortgagePushs.match &gt;= 35 ? &#39;orange&#39; : &#39;red&#39;)" style="width:65%;" class="green"></span></label>
+                    <span class="match ng-binding">65% match</span>
+                </p>
+                <span class="apr ng-binding">4.098% APR</span>
+                <span class="mo-pay ng-binding">$2,146/mo</span>
+                <span class="mo-type ng-binding">30yr Fixed Rate</span>
+                <span class="mo-fees ng-binding">$6,310 in fees</span>
+             
+                </li><!-- end ngRepeat: mortgagePushs in loanFilter(messageId) -->
+
+<!--                 <div class="grad-overlay"></div>
+ -->    </ul>
+<!--          <div class="best-mortgages"></div> -->
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+     <!-- ngInclude: 'partials/footer.html' --><div ng-include="&#39;partials/footer.html&#39;" class="ng-scope"><!--  <footer>
+        <div class="inner-container">
+            <span class="footer-info">
+                <span>&copy; 2015 Zen Mortgage. All rights reserved.</span>
+            </span>
+            <ul>
+                <li>Licensing</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Use</li>
+                <li>Legal Disclosures</li>
+                <li>NMLS Consumer Access</li>
+            </ul>
+            <div class="footer-bottom">
+               <img src="img/equal-housing.png" width="75" />
+            </div>   
+
+        </div>
+    </footer> --></div>
+    
+   </div>
+    </div>
+    <!-- scripts -->
+    <script src="./Easyloan Mortgage_files/jquery.js"></script>
+    <script src="./Easyloan Mortgage_files/angular.js"></script>
+    <script src="./Easyloan Mortgage_files/angular-route.js"></script>
+    <script src="./Easyloan Mortgage_files/angular-animate.js"></script>
+    <script src="./Easyloan Mortgage_files/bootstrap.js"></script>
+    <script src="./Easyloan Mortgage_files/jquery-ui.js"></script>
+    <script src="./Easyloan Mortgage_files/dictionary.js"></script>
+    <script src="./Easyloan Mortgage_files/mortgage-dictionary.js"></script>    
+    <script src="./Easyloan Mortgage_files/runProcess.js"></script>
+    <script src="./Easyloan Mortgage_files/main.js"></script>
+    
+
+  
+<script>//<![CDATA[
+document.write('<script src="//' + (location.hostname || 'localhost') + ':35728/livereload.js?snipver=1"><\/script>')
+//]]></script><script src="./Easyloan Mortgage_files/livereload.js"></script>
+
+</body></html>
