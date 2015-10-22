@@ -596,7 +596,6 @@ header .background-cover .intro-text .intro-heading .heading-font {
 
 @media (min-width: 768px) {
   header {
-    background: url(../img/header-bg.png);
     background-size: 130%;
     background-position: center -340px;
   }
@@ -606,7 +605,7 @@ header .background-cover .intro-text .intro-heading .heading-font {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    
   }
   header .intro-text {
     padding: 30px 30px;

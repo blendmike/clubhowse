@@ -42,203 +42,33 @@
 
 
   app.controller('MainController', [
-    '$scope', '$location',
-    function($scope,$location) {
+    '$scope', '$location', '$rootScope',
+    function($scope,$location, $rootScope, addressCapture) {
 
 
-  
+
+        $rootScope.addressCapture = addressCapture
 
 
-      if($('.intro-text').length){
-        $('.intro-text').height($(window).height() / 2.5)
-      }
+        $rootScope.$watch('addressCapture', function(){
+          alert(addressCapture);
+        }, true);  
 
-      setTimeout(function(){
-        if($('.zen-app').length || $('.cur-mor-rates').length){
-        $('.navbar-brand').addClass('app-mode')
-        $('.navbar-default').addClass('app-mode')
-        $(function() {
-         $('aside ul li').on('click', function(){
-            var id_ = $(this).attr('id');
-            $('aside ul li').removeClass('current');
-            $('article').removeClass('current');
-            $(this).addClass('current');
-            $('article.'+id_).addClass('current');
-
-        })
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amountone" ).text( "$" + ui.values[ 0 ]);
-        $( "#amounttwo" ).text( "$" + ui.values[ 1 ]);
-      }
-    });
-    $( "#amountone" ).text( "$" + $( "#slider-range" ).slider( "values", 0 ));
-        $( "#amounttwo" ).text( "$" + $( "#slider-range" ).slider( "values", 1 ));
-  });
-      }
-      },100)
-      
-
-      $scope.apply = function(){
-       $location.path('/apply');
-      };
-
-      $scope.showTooltip = function($event){
-        var top_ = $event.target.getBoundingClientRect().top;
-        var left_ = $event.target.getBoundingClientRect().left;
-        $('.tool-tip').css({
-          top: top_ - $('.tool-tip').height(),
-          left: left_ - ($('.tool-tip').width() / 2 - 25)
-
-        })
-
-
-                setTimeout(function(){
-                   $('.tool-tip').addClass('on');
-                },500)       
-
-
-            
-
-
-            };
-
-      $scope.hideTooltip = function(){
-        $('.tool-tip').removeClass('on');
-      }
-
-      $scope.yourRates = function(){
-        $scope.$apply(function() {
-            $location.path('/your-rates');
-        });
-      };
+        
 
 
       
 
-       $scope.loanFilter = function(id) {
-          return appMortgage[id].relatedLoan;
-       }
+   
 
 
 
 
-  
-      $scope.overlay = function(a){
-         if(a == "small"){
-            $('.overlay').addClass('small');
-            $('.overlay').toggleClass('on');
-
-         }
-         else{
-            $('.overlay').removeClass('small');
-             $('.overlay').toggleClass('on');
-          }
-      };
-
-      $scope.runHomeSize = function(){
-        $('.emblem-start .inner-container .intro-text').height($(window).height() - 310)
-
-      };
 
 
 
 
-  
-        $scope.sizeControl = function (){
-          $('.zen-app').height($(window).height() - 65);
-        }
 
-        $scope.runTooltip = function(){
-          $('body').on('mouseenter', '.match', function(){
-
-                $('.tool-tip').css({
-                  top : $(this).offset().top - $('.tool-tip').height(),
-                  left : $(this).offset().left - $('.tool-tip').width() / 2 + 20
-                })
-
-                setTimeout(function(){
-                   $('.tool-tip').addClass('on');
-                },500)      
-          })
-
-                    $('body').on('mouseleave', '.match', function(){
-                    $('.tool-tip').removeClass('on');
-          })
-
-          $( window).scroll(function() {
-              $('.tool-tip').removeClass('on');
-            });
-          $( ".rates-results" ).scroll(function() {
-              $('.tool-tip').removeClass('on');
-            });
-
-
-
-        }
-
-
-
-        $scope.messageId = 1;
-        $scope.cardTypeId = 0;
-        $scope.curPageObj = {};
-        $scope.pricingMessages = pricingMessages;
-        $scope.appMortgage = appMortgage;
-        $scope.finalRates = finalRates;
-        $scope.storeCurPriceCard = [];
-        var hKey;
-
-
-
-
-    $scope.getValues = function(id) {
-
-        $scope.pM = pricingMessages[id];
-        $scope.curPageObj = $scope.pM[0];
-        return pricingMessages[id];
-
-    }
-
-    $scope.getMortgage = function(id) {
-
-        $scope.gM = appMortgage[id];
-        //$scope.curPageObj = $scope.pM[0];
-        return appMortgage[id];
-
-    }
-
-
-
-
-    //console.log(storeCurPriceCard); 
-    setTimeout(function() {
-
-    for (var am = 0; am < appMortgage.length; am++) {
-            var template;
-            var t = template;
-                t = "<div class='mortgage card mort-"+appMortgage[am].mid+"'>";
-                t +=  "<p class='mort-logo'><img src='img/lender-logos/" + appMortgage[am].lender.replace(/\s+/g, '').toLowerCase() +".jpg' /></p>";
-                t +=  "<p><span class='type'>" + appMortgage[am].type +"</span>";
-                t +=  "<span class='apr'>" + appMortgage[am].apr +" APR</span>";
-                t +=  "<span class='rate'>" + appMortgage[am].rate +"</span>";
-                t +=  "<span class='mopayments'>$" + appMortgage[am].mopayments +"/mo</span></p>";
-                t +=  "</div>";
-
-                console.log(t);
-                $('.best-mortgages').append(t);
-           
-
-            console.log(appMortgage[am]);
-
-        };
-        if ($('.pricing-options').length) {
-            $('.pricing-options').height($('.main-view').height() / 1.65)
-        }
-    }, 100)
 
     //var PricingProcess = Parse.Object.extend("PricingProcess");
     //var pricingProcess = new PricingProcess();

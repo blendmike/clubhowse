@@ -1,16 +1,32 @@
-<div ng-include="'partials/header.html'"></div>
-<div class="emblem-start">
+<!-- <div ng-include="'partials/header.html'"></div> -->
+<div class="clubhowse-start">
+   
     <header>
+    <video autoplay loop muted style="position:absolute;z-index:0;">
+            <source src="http://localhost:5000/videos/BLEND-LOOP.mp4" type="video/mp4" />
+            <source src="http://localhost:5000/videos/BLEND-LOOP.webm" type="video/webm" />
+            <source src="http://localhost:5000/videos/BLEND-LOOP.ogv" type="video/ogg" />
+            <img src="http://localhost:5000/videos/BLEND-LOOP.png" title="Your browser does not support the <video> tag">
+    </video>
         <div class="cover"></div>
         <div class="container">
             <div class="inner-container" ng-init="runHomeSize();">
                 <div class="intro-text col-md-12">
-                    <div class="intro-lead-in"></div>
+                    <div class="intro-lead-in">Enter an address</div>
                     <div class="intro-heading"></div>
+                    <div id="locationField">
+                      <input ng-init="addressSearch();" style="width:70%;clear:both;float:left;margin-left:15%;height:50px;border:none;border-radius:20px;" id="autocomplete" placeholder="Enter your address" type="text"></input>
+                    </div>
+                    
                     <button ng-click="apply()" class="apply">Get Started</button>
                 </div>
             </div>
+  </head>
 
+  <body>
+    
+
+ 
 
         </div>
     </header>
