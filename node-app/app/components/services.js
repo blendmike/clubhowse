@@ -62,6 +62,7 @@ angular.module('myApp.services', [])
       })
     };
 
+    var METERS_PER_MILE = 1609.34;
     var URL_BASE = "https://foursquare.com/v/";
     var explore = function(loc) {
       var deferred = $q.defer();
@@ -72,7 +73,6 @@ angular.module('myApp.services', [])
           result.data[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
-                console.log(item);
                 var obj = {
                   name: item.venue.name,
                   location: item.venue.location,
@@ -81,6 +81,12 @@ angular.module('myApp.services', [])
                   },
                   url: URL_BASE + item.venue.id
                 };
+                obj.location.distance = obj.location.distance / METERS_PER_MILE;
+                if (obj.location.distance >= 1) {
+                  obj.location.distance = _.round(obj.location.distance);
+                } else {
+                  obj.location.distance = _.round(obj.location.distance, 1);
+                }
                 if (item.venue.featuredPhotos) {
                   obj.photos = _.compact(_.map(item.venue.featuredPhotos.items, function(item) {
                     if (item.visibility !== 'public') {
