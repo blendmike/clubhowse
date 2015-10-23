@@ -77,19 +77,20 @@
 
                 <div class="wrapped-content col-md-6">
 
-                 <h2>Overview</h2>
                     <ul>
                       <li class="homes">
+                           <span class="neighboorhood" style="font-size:36px;color:#ff4d70 !important;font-family:'open sans'">{{data.zillow.principal.localRealEstate.region._name}}</span>
+                      <span class="price" style="font-size:32px;">{{data.zillow.principal.zestimate.amount.__text | currency:"$"}}</span>
                           
-                      <span class="price">${{data.zillow.principal.zestimate.amount.__text}}</span>
-                           <span class="neighboorhood">{{data.zillow.principal.localRealEstate.region._name}}</span>
-                          <span class="high">${{data.zillow.principal.zestimate.valuationRange.high.__text}}</span>
-                          <span class="low">${{data.zillow.principal.zestimate.valuationRange.low.__text}}</span>
+                          <span class="high">{{data.zillow.principal.zestimate.valuationRange.high.__text | currency:"$"}}</span>
+                          <span class="low">{{data.zillow.principal.zestimate.valuationRange.low.__text | currency:"$"}}</span>
                           <a href="{{data.zillow.principal.links.comparables}}" target="_blank">Comparables</a>
                           <a href="{{data.zillow.principal.links.graphsanddata}}" target="_blank">Graphs and Data</a>
                           <a href="{{data.zillow.principal.links.homedetails}}" target="_blank">Home Details</a>
                           <a href="{{data.zillow.principal.links.mapthishome}}" target="_blank">Map This Home</a>
                       </li>
+
+                      <button style="background:#50d2c2;color:#fff;border-radius:4px;float:left;clear:both;">Get approved for this home</button>
                     </ul>
 
 
