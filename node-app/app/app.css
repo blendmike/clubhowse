@@ -1187,16 +1187,32 @@ form p {
   background: rgba(0, 70, 115, .7);
   color: #fff;
   font: 700px;
-
 }
 
+  ul, li{
+    list-style: none;
+  }
+
   .blog article .nightlife img, .blog article .outdoors img, .blog article .foods img, .blog article .coffees img, .blog article .shop img, .blog article .sights img{
-    width:200px;
+    width:100px;
+    float: left;
+  }
+
+  .blog article ul li{
+    float:left;
+    width:31%;
+    height:200px;
+    margin:0 1%;
+  }
+
+  .blog article ul li h3{
+    padding:0;
+    margin:0;
   }
 
   .photo-container img{
     margin-left:-5px;
-    width:180px;
+    height:110px;
   }
 
   .photo-container{
