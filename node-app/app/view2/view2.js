@@ -166,12 +166,23 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 
 
+    function shuffleIn(to, from) {
+      to = to || [];
+      for (var fromIndex = 0; fromIndex < from.length; fromIndex++) {
+        var toIndex = Math.floor(Math.random() * to.length);
+        to.splice(toIndex, 0, from[fromIndex]);
+      }
+      return to;
+    }
+
     $scope.data = {};
     SelectedLocation.setDoWithLocation(function(loc) {
       $scope.loc = loc;
+      $scope.data = {};
       if ($scope.loc.geometry) {
         FoursquareAPI.explore(loc).then(function(response) {
-          $scope.data.foursquare = response;
+          $scope.data.foursquare = response.data;
+          $scope.data.photos = shuffleIn($scope.data.photos, response.photos);
           console.log($scope.data);
         }, function() {
           $scope.data.foursquare = {};

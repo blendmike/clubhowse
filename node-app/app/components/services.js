@@ -68,7 +68,9 @@ angular.module('myApp.services', [])
       var result = {};
       _.each(SECTIONS, function(section) {
         exploreSection(loc, section).then(function(response) {
-          result[section] = _.flatten(
+          result.photos = [];
+          result.data = {};
+          result.data[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
                 return {
@@ -82,9 +84,9 @@ angular.module('myApp.services', [])
                       if (item.visibility !== 'public') {
                         return false;
                       }
-                      return {
-                        url: item.prefix + item.width + 'x' + item.height + item.suffix
-                      };
+                      var url = item.prefix + item.width + 'x' + item.height + item.suffix;
+                      result.photos.push(url);
+                      return { url: url };
                     }));
                   }))
                 }
