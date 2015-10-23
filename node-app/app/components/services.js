@@ -112,7 +112,10 @@ angular.module('myApp.services', [])
               })
             }), true);
           // TODO real scores
-          result.scores[section] = _.round(6.8 + .1 * awaiting, 1);
+          result.scores[section] = _.round(6.8 + .1 * awaiting, 1);]
+          if (result.scores[section] === 7) {
+            result.scores[section] = '7.0';
+          }
           awaiting = awaiting - 1;
           if (!awaiting) {
             deferred.resolve(result);
