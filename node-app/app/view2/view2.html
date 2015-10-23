@@ -84,10 +84,10 @@
                           
                           <span class="high" style="color:#9b9b9b">Market High: {{data.zillow.principal.zestimate.valuationRange.high.__text | currency:"$"}}</span>
                           <span class="low" style="color:#9b9b9b">Market Low: {{data.zillow.principal.zestimate.valuationRange.low.__text | currency:"$"}}</span>
-                          <a href="{{data.zillow.principal.links.comparables}}" target="_blank">Comparables</a>
-                          <a href="{{data.zillow.principal.links.graphsanddata}}" target="_blank">Graphs and Data</a>
-                          <a href="{{data.zillow.principal.links.homedetails}}" target="_blank">Home Details</a>
-                          <a href="{{data.zillow.principal.links.mapthishome}}" target="_blank">Map This Home</a>
+                          <a href="{{data.zillow.principal.links.comparables}}" target="_blank">Comparables</a></br>
+                          <a href="{{data.zillow.principal.links.graphsanddata}}" target="_blank">Graphs and Data</a></br>
+                          <a href="{{data.zillow.principal.links.homedetails}}" target="_blank">Home Details</a></br>
+                          <a href="{{data.zillow.principal.links.mapthishome}}" target="_blank">Map This Home</a></br>
                       </li>
 
                       <button style="background:#50d2c2;color:#fff;border-radius:4px;float:left;clear:both;">Get approved for this home</button>
@@ -109,15 +109,15 @@
                     <h2>Comparable Homes</h2>
                     <ul>
                       <li class="homes" ng-repeat="house in data.zillow.comparables | limitTo:6">
-                          <p>{{house.address.street}} {{house.address.city}} {{house.address.state}} {{house.address.zip}}</p>
-                          <span class="price">${{house.zestimate.amount.__text}}</span>
-                          <span class="neighboorhood">{{house.localRealEstate.region._name}}</span>
-                          <span class="high">${{house.zestimate.valuationRange.high.__text}}</span>
-                          <span class="low">${{house.zestimate.valuationRange.low.__text}}</span>
-                          <a href="{{house.links.comparables}}" target="_blank">Comparables</a>
-                          <a href="{{house.links.graphsanddata}}" target="_blank">Graphs and Data</a>
-                          <a href="{{house.links.homedetails}}" target="_blank">Home Details</a>
-                          <a href="{{house.links.mapthishome}}" target="_blank">Map This Home</a>
+                         
+                          <p style="font-size:26px;color:#ff4d70">{{house.address.street}} {{house.address.city}} {{house.address.state}} {{house.address.zip}}</p>
+                          <span style="font-size:18px;" class="price">Cost: {{house.zestimate.amount.__text | currency:"$"}}</span>
+                          <span class="high">Market High:{{house.zestimate.valuationRange.high.__text | currency:"$"}}</span>
+                          <span class="low">Market Low: {{house.zestimate.valuationRange.low.__text | currency:"$"}}</span>
+                          <a href="{{house.links.comparables}}" target="_blank">Comparables</a><br />
+                          <a href="{{house.links.graphsanddata}}" target="_blank">Graphs and Data</a><br />
+                          <a href="{{house.links.homedetails}}" target="_blank">Home Details</a><br />
+                          <a href="{{house.links.mapthishome}}" target="_blank">Map This Home</a><br />
                       </li>
                     </ul>
                  </div>
