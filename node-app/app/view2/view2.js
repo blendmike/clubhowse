@@ -185,9 +185,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
       
       $scope.loc = loc;
-
-
-      $scope.data = {};
+      $scope.data = { scores: {} };
       if ($scope.loc.address) {
         $.ajax({
           url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles="+$scope.loc.address.city,
@@ -205,6 +203,7 @@ angular.module('myApp.view2', ['ngRoute'])
         FoursquareAPI.explore(loc).then(function(response) {
           $scope.data.foursquare = response.data;
           $scope.data.photos = shuffleIn($scope.data.photos, response.photos);
+          _.assign($scope.data.scores, response.scores);
           console.log($scope.data);
         }, function() {
           $scope.data.foursquare = {};

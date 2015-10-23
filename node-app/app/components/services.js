@@ -67,7 +67,7 @@ angular.module('myApp.services', [])
     var explore = function(loc) {
       var deferred = $q.defer();
       var awaiting = SECTIONS.length;
-      var result = { photos: [], data: {} };
+      var result = { photos: [], data: {}, scores: {} };
       _.each(SECTIONS, function(section) {
         exploreSection(loc, section).then(function(response) {
           result.data[section] = _.flatten(
@@ -111,6 +111,8 @@ angular.module('myApp.services', [])
                 return obj;
               })
             }), true);
+          // TODO real scores
+          result.scores[section] = _.round(6.8 + .1 * awaiting, 1);
           awaiting = awaiting - 1;
           if (!awaiting) {
             deferred.resolve(result);
