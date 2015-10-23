@@ -69,7 +69,7 @@
 
               <article class="overview" >
                 <div class="wrapped-content">
-                  <h2>overview of {{loc.address.street_address}} {{loc.address.city}}, {{loc.address.state}}</h2>                  
+                  <h2>overview of <span style="float:none;">{{loc.address.street_address}} {{loc.address.city}}, {{loc.address.state}}</span></h2>                  
 
 
                 
@@ -77,13 +77,13 @@
 
                 <div class="wrapped-content col-md-6">
 
-                    <ul>
-                      <li class="homes">
+                    <ul style="width:100%">
+                      <li class="homes" style="width:100%;">
                            <span class="neighboorhood" style="font-size:36px;color:#ff4d70 !important;font-family:'open sans'">{{data.zillow.principal.localRealEstate.region._name}}</span>
                       <span class="price" style="font-size:32px;">{{data.zillow.principal.zestimate.amount.__text | currency:"$"}}</span>
                           
-                          <span class="high">{{data.zillow.principal.zestimate.valuationRange.high.__text | currency:"$"}}</span>
-                          <span class="low">{{data.zillow.principal.zestimate.valuationRange.low.__text | currency:"$"}}</span>
+                          <span class="high" style="color:#9b9b9b">Market High: {{data.zillow.principal.zestimate.valuationRange.high.__text | currency:"$"}}</span>
+                          <span class="low" style="color:#9b9b9b">Market Low: {{data.zillow.principal.zestimate.valuationRange.low.__text | currency:"$"}}</span>
                           <a href="{{data.zillow.principal.links.comparables}}" target="_blank">Comparables</a>
                           <a href="{{data.zillow.principal.links.graphsanddata}}" target="_blank">Graphs and Data</a>
                           <a href="{{data.zillow.principal.links.homedetails}}" target="_blank">Home Details</a>

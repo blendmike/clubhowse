@@ -618,6 +618,11 @@ body {
   color:#003273 !important;
 }
 
+.blog article h2 span{
+  color:#ffb258;
+  float:right;
+}
+
 
 .blog article {
   background: #fafafa;
