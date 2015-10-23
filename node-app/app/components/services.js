@@ -71,13 +71,15 @@ angular.module('myApp.services', [])
           result.data[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
-                return {
+                var obj = {
                   name: item.venue.name,
                   location: item.venue.location,
                   details: {
                     hours: item.venue.hours
-                  },
-                  photos: _.compact(_.map(item.venue.featuredPhotos.items, function(item) {
+                  }
+                };
+                if (item.venue.featuredPhotos) {
+                  obj.photos = _.compact(_.map(item.venue.featuredPhotos.items, function(item) {
                     if (item.visibility !== 'public') {
                       return false;
                     }
@@ -85,7 +87,19 @@ angular.module('myApp.services', [])
                     result.photos.push(url);
                     return { url: url };
                   }))
+                } else {
+                  obj.photos = _.flatten(_.map(item.venue.photos.groups, function(group) {
+                    return _.compact(_.map(group.items, function(item) {
+                      if (item.visibility !== 'public') {
+                        return false;
+                      }
+                      var url = item.prefix + item.width + 'x' + item.height + item.suffix;
+                      result.photos.push(url);
+                      return { url: url };
+                    }));
+                  }))
                 }
+                return obj;
               })
             }), true);
           awaiting = awaiting - 1;
