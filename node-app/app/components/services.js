@@ -65,11 +65,9 @@ angular.module('myApp.services', [])
     var explore = function(loc) {
       var deferred = $q.defer();
       var awaiting = SECTIONS.length;
-      var result = {};
+      var result = { photos: [], data: {} };
       _.each(SECTIONS, function(section) {
         exploreSection(loc, section).then(function(response) {
-          result.photos = [];
-          result.data = {};
           result.data[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
