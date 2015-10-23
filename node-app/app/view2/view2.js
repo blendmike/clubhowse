@@ -169,8 +169,10 @@ angular.module('myApp.view2', ['ngRoute'])
     function shuffleIn(to, from) {
       to = to || [];
       for (var fromIndex = 0; fromIndex < from.length; fromIndex++) {
-        var toIndex = Math.floor(Math.random() * to.length);
-        to.splice(toIndex, 0, from[fromIndex]);
+        if (!_.contains(to, from[fromIndex])) {
+          var toIndex = Math.floor(Math.random() * to.length);
+          to.splice(toIndex, 0, from[fromIndex]);
+        }
       }
       return to;
     }
