@@ -206,6 +206,15 @@ video{
       border:#eee 4px solid;
       float:left;
       margin-right:50px;
+      position: absolute;
+    }
+
+    .bottom-section article p{
+      margin-left:210px;
+    }
+
+    .bottom-section article h2{
+      margin-left:210px;
     }
 
     .bottom-section article.top-art h2{
