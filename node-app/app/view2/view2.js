@@ -9,7 +9,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', 'ZillowAPI', function($scope, SelectedLocation, FoursquareAPI, ZillowAPI) {
+.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', 'ZillowAPI', '$location', function($scope, SelectedLocation, FoursquareAPI, ZillowAPI, $location) {
 
 
   $('.portfolio-grid article a, .button, button, input[type="submit"], input[type="reset"], input[type="button"], #header a, .header-button, #nav-container a, .nav-child-container, .gallery-container a, #ps-custom-back').on('hover', function(event) {
@@ -178,7 +178,7 @@ angular.module('myApp.view2', ['ngRoute'])
     }
 
     $scope.data = {};
-    SelectedLocation.setDoWithLocation(function(loc) {
+    var doWithLoc = function(loc) {
 
 
 
@@ -190,12 +190,12 @@ angular.module('myApp.view2', ['ngRoute'])
         $.ajax({
           url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles="+$scope.loc.address.city,
           dataType: "jsonp",
-           success: function( response ) {
-              var obj_ = response.query.pages;
-              var value_ = obj_[Object.keys(obj_)[0]];
-              $scope.wiki = value_.extract;
+          success: function( response ) {
+            var obj_ = response.query.pages;
+            var value_ = obj_[Object.keys(obj_)[0]];
+            $scope.wiki = value_.extract;
           }
-      });
+        });
       }
       if ($scope.loc.address) {
         ZillowAPI.search(loc).then(function(response) {
@@ -205,6 +205,16 @@ angular.module('myApp.view2', ['ngRoute'])
         })
       }
       if ($scope.loc.geometry) {
+        locProps.forEach(function (k) {
+          $location.search(k, loc[k]);
+        });
+        addressProps.forEach(function (k) {
+          $location.search(k, loc.address[k]);
+        });
+        geoProps.forEach(function (k) {
+          $location.search(k, loc.geometry.location[k]());
+        });
+
         //console.log($scope.loc.geometry.location.lat());
         //console.log($scope.loc.geometry.location.lng());
         FoursquareAPI.explore(loc).then(function(response) {
@@ -224,22 +234,46 @@ angular.module('myApp.view2', ['ngRoute'])
           map.setZoom(17);  // Why 17? Because it looks good.
         }
       });
-    });
-    SelectedLocation.setLocation({
+    };
+    SelectedLocation.setDoWithLocation(doWithLoc);
+    var defaultValues = {
       display: '130 Vale Ave, San Francisco, CA, United States',
-      address: {
-        city: "San Francisco",
-        route: "Vale Avenue",
-        state: "CA",
-        street_address: "130 Vale Avenue",
-        street_number: "130",
-        zip: "94132"
-      },
-      geometry: {
-        location: {
-          lat: function() { return '37.734905' },
-          lng: function() { return '-122.48385400000001' }
-        }
+      city: "San Francisco",
+      route: "Vale Avenue",
+      state: "CA",
+      street_address: "130 Vale Avenue",
+      street_number: "130",
+      zip: "94132",
+      lat: '37.734905',
+      lng: '-122.48385400000001'
+    };
+    var locProps = ['display'];
+    var addressProps = ['city', 'route', 'state', 'street_address', 'street_number', 'zip'];
+    var geoProps = ['lat', 'lng'];
+    var loc = {};
+    var savedState = $location.search();
+    _.each(locProps, function (prop) {
+      if (typeof savedState[prop] !== 'undefined') {
+        loc[prop] = savedState[prop];
+      } else {
+        loc[prop] = defaultValues[prop];
       }
     });
+    loc.address ={}
+    _.each(addressProps, function (prop) {
+      if (typeof savedState[prop] !== 'undefined') {
+        loc.address[prop] = savedState[prop];
+      } else {
+        loc.address[prop] = defaultValues[prop];
+      }
+    });
+    loc.geometry = { location: {} };
+    _.each(geoProps, function(prop) {
+      if (typeof savedState[prop] !== 'undefined') {
+        loc.geometry.location[prop] = function() { return savedState[prop] };
+      } else {
+        loc.geometry.location[prop] = function() { return defaultValues[prop] };
+      }
+    });
+    SelectedLocation.setLocation(loc);
 }]);
