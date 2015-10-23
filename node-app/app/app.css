@@ -583,7 +583,7 @@ body {
   position: relative; }
 
 .wrapped-content {
-  padding: 25px 15px;
+  padding: 25px 45px;
   z-index: 2;
   position: relative; }
 
@@ -607,14 +607,15 @@ body {
 .blog article h2{
   font-size:2em !important;
   font-family: "Open Sans", sans-serif;
-  color:#1D1D26;
-  text-transform: uppercase;
-  background: rgba(0, 70, 115, .7);
+  text-transform: lowercase;
+  border-bottom:2px #ebebeb solid;
   padding:20px;
-  color:#fff;
+  padding-left:0 !important;
   margin-bottom:50px !important;
+  background:none !important;
   float:left;
-  width: 100%;
+  width: 90%;
+  color:#003273 !important;
 }
 
 
@@ -1320,9 +1321,7 @@ form p {
     width:100px;
     height:100px;
     border-radius: 50%;
-    float: left;
     margin-right:15px;
-    position: absolute;
   }
 
   .blog article ul li{
@@ -1338,14 +1337,8 @@ form p {
     font-family: "Roboto";
     font-size:1.5em;
     margin-top:15px;
-    padding-left:120px;
   }
 
- .blog article ul li p, .blog article ul li span{
-    padding:0;
-    margin:0;
-    padding-left:120px;
- }
 
 
   .photo-container img{

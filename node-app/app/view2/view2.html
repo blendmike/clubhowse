@@ -19,13 +19,13 @@
                     <a href="#" class="nav-with-ul dashboard">Dashboard</a>
                     </li><li>
                     <a href="#" class="nav-with-ul photos">Photos</a>
-                    </li><li>
+                    </li><!-- <li>
                     <a href="#" class="nav-with-ul crime-report">Crime Report</a>
                     </li><li>
                     <a href="#" class="nav-with-ul demographics">Demographics</a>
                     </li><li>
                     <a href="#" class="nav-with-ul salaries">Salaries</a>
-                    </li><li>
+                    </li><li> -->
                     <a href="#" class="nav-with-ul eat-drink">Eat & Drink</a>
                     </li><li>
                     <a href="#" class="nav-with-ul education">Education</a>
@@ -68,8 +68,8 @@
 
               <article class="overview" >
                 <div class="wrapped-content">
-                  <h2>An overview of {{loc.address.city}}</h2>                  
-                </div>
+                  <h2>overview of {{loc.address.street_address}} {{loc.address.city}}, {{loc.address.state}}</h2>                  
+
 
                 
                 
@@ -81,14 +81,15 @@
                   </p>
                 </div>
 
-                <div class="wrapped-content col-md-6 map">
+                <div class="wrapped-content col-md-4 map">
                   <div id="map-two"></div>
                 </div>
+                 </div>
               </article>
 
 
            
-
+<!-- 
               
               <article class="crime-report">
                 <div class="wrapped-content">
@@ -107,11 +108,11 @@
                 <div class="wrapped-content">
                   <h2>Salaries</h2>
                 </div>
-              </article>
+              </article> -->
 
                <article class="coffees">
                  <div class="wrapped-content">
-                    <h2>Cafe</h2>
+                    <h2>Cafe <span>{{data.scores.coffee}}</span></h2>
                      <ul class="coffees">
                       <li ng-repeat="coffees in data.foursquare.coffee | limitTo:9">
                         <img src="{{coffees.photos[0].url}}" />
@@ -128,7 +129,7 @@
 
               <article class="shop">
                 <div class="wrapped-content">
-                   <h2>Shopping</h2>
+                   <h2>Shopping <span>{{data.scores.shops}}</span></h2>
                    <ul class="shop">
                     <li ng-repeat="shop in data.foursquare.shops | limitTo:9">
                       <img src="{{shop.photos[0].url}}" />
@@ -145,7 +146,7 @@
 
               <article class="foods">
                 <div class="wrapped-content">
-                <h2>Food</h2>
+                <h2>Food <span>{{data.scores.food}}</span></h2>
                  <ul class="foods">
                   <li ng-repeat="foods in data.foursquare.food | limitTo:9">
                     <img src="{{foods.photos[0].url}}" />
@@ -161,7 +162,7 @@
 
               <article class="nightlife">
                <div class="wrapped-content">
-                <h2>Nightlife</h2>
+                <h2>Nightlife <span>{{data.scores.drinks}}</span></h2>
                 <ul class="nightlife">
                   <li ng-repeat="drink in data.foursquare.drinks | limitTo:9">
                     <img src="{{drink.photos[0].url}}" />
@@ -176,7 +177,7 @@
               </div>
               </article>
 
-              <article class="education">
+            <!--   <article class="education">
                 <div class="wrapped-content">
                   <h2>Education</h2>
                 </div>
@@ -186,17 +187,17 @@
                 <div class="wrapped-content">
                   <h2>Transportation</h2>
                 </div<
-              </article>
+              </article> -->
 
-              <article class="weather">
+           <!--    <article class="weather">
                 <div class="wrapped-content">
-                  <h2>Weathers</h2>
+                  <h2>Weather</h2>
                 </div>
               </article>
-
+ -->
               <article class="outdoors">
                 <div class="wrapped-content">
-                <h2>Outdoors</h2>
+                <h2>Recreation <span>{{data.scores.outdoors}}</span></h2>
                  <ul class="outdoors">
                   <li ng-repeat="outdoor in data.foursquare.outdoors | limitTo:9">
                     <img src="{{outdoor.photos[0].url}}" />
@@ -213,7 +214,7 @@
 
               <article class="things-to-see">
                 <div class="wrapped-content">
-                  <h2>Things to see</h2>
+                  <h2>Things to see <span>{{data.scores.sights}}</span></h2>
                    <ul class="sights">
                     <li ng-repeat="sight in data.foursquare.sights | limitTo:9">
                       <img src="{{sight.photos[0].url}}" />
