@@ -136,7 +136,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
   mapTwo.mapTypes.set('map_style', styledMapTwo);
   mapTwo.setMapTypeId('map_style');
-}
+};
 
 
 

@@ -77,15 +77,13 @@ angular.module('myApp.services', [])
                   details: {
                     hours: item.venue.hours
                   },
-                  photos: _.flatten(_.map(item.venue.photos.groups, function(group) {
-                    return _.compact(_.map(group.items, function(item) {
-                      if (item.visibility !== 'public') {
-                        return false;
-                      }
-                      var url = item.prefix + item.width + 'x' + item.height + item.suffix;
-                      result.photos.push(url);
-                      return { url: url };
-                    }));
+                  photos: _.compact(_.map(item.venue.featuredPhotos.items, function(item) {
+                    if (item.visibility !== 'public') {
+                      return false;
+                    }
+                    var url = item.prefix + item.width + 'x' + item.height + item.suffix;
+                    result.photos.push(url);
+                    return { url: url };
                   }))
                 }
               })
