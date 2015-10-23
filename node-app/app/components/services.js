@@ -67,7 +67,7 @@ angular.module('myApp.services', [])
     var explore = function(loc) {
       var deferred = $q.defer();
       var awaiting = SECTIONS.length;
-      var result = { photos: [], data: {} };
+      var result = { photos: [], data: {}, scores: {} };
       _.each(SECTIONS, function(section) {
         exploreSection(loc, section).then(function(response) {
           result.data[section] = _.flatten(
@@ -111,6 +111,8 @@ angular.module('myApp.services', [])
                 return obj;
               })
             }), true);
+          // TODO real scores
+          result.scores[section] = _.round(6.8 + .1 * awaiting, 1);
           awaiting = awaiting - 1;
           if (!awaiting) {
             deferred.resolve(result);
@@ -127,5 +129,70 @@ angular.module('myApp.services', [])
     return {
       explore: explore
     }
+  }])
+
+  .service('APIRequester', ['$http', function($http) {
+    return function(baseUrl, defaultParams, config) {
+      config = config || {};
+      return function(path, params) {
+        var requestConfig = _.cloneDeep(config);
+        requestConfig.params = _.defaults(params, defaultParams);
+        return $http.get(baseUrl + path, requestConfig);
+      }
+    }
+  }])
+
+  .service('ZillowAPI', ['APIRequester', '$q', function(APIRequester, $q) {
+    request = APIRequester('zillow-proxy/webservice/',
+      {
+        'zws-id': 'X1-ZWz1a0vjv8o5cb_4bx42'
+      },
+      {
+        transformResponse: function(data) {
+          // convert the data to JSON and provide
+          // it to the success function below
+          var x2js = new X2JS();
+          var json = x2js.xml_str2json( data );
+          return json;
+        }
+      }
+    );
+
+    var deepSearch = function(loc) {
+      return request('GetDeepSearchResults.htm',
+        {
+          address: loc.address.street_address,
+          citystatezip: [loc.address.city, loc.address.state, loc.address.zip].join()
+        }
+      ).then(function(response) {
+          var searchResults = response.data.searchresults;
+          if (searchResults.message.code !== "0") {
+            return $q.reject();
+          }
+          return searchResults.response.results.result;
+        });
+    };
+
+    var comps = function(home) {
+      return request('GetComps.htm', { zpid: home.zpid, count: 20 }).then(function(response) {
+        var searchResults = response.data.comps;
+        if (searchResults.message.code !== "0") {
+          return $q.reject();
+        }
+        var properties = searchResults.response.properties;
+        properties.comparables = properties.comparables.comp;
+        return properties;
+      });
+    };
+
+    var search = function(loc) {
+      return deepSearch(loc).then(function(home) {
+        return comps(home);
+      });
+    };
+
+    return {
+      search: search
+    };
   }])
 ;

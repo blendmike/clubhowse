@@ -9,7 +9,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', '$http', function($scope, SelectedLocation, FoursquareAPI, $http) {
+.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', 'ZillowAPI', function($scope, SelectedLocation, FoursquareAPI, ZillowAPI) {
 
 
   $('.portfolio-grid article a, .button, button, input[type="submit"], input[type="reset"], input[type="button"], #header a, .header-button, #nav-container a, .nav-child-container, .gallery-container a, #ps-custom-back').on('hover', function(event) {
@@ -183,11 +183,9 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
 
-      
+      console.log(loc);
       $scope.loc = loc;
-
-
-      $scope.data = {};
+      $scope.data = { scores: {} };
       if ($scope.loc.address) {
         $.ajax({
           url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles="+$scope.loc.address.city,
@@ -199,12 +197,20 @@ angular.module('myApp.view2', ['ngRoute'])
           }
       });
       }
+      if ($scope.loc.address) {
+        ZillowAPI.search(loc).then(function(response) {
+          $scope.data.zillow = response;
+        }, function() {
+          console.log('zillow error! :-/');
+        })
+      }
       if ($scope.loc.geometry) {
-        console.log($scope.loc);
-        
+        //console.log($scope.loc.geometry.location.lat());
+        //console.log($scope.loc.geometry.location.lng());
         FoursquareAPI.explore(loc).then(function(response) {
           $scope.data.foursquare = response.data;
           $scope.data.photos = shuffleIn($scope.data.photos, response.photos);
+          _.assign($scope.data.scores, response.scores);
           console.log($scope.data);
         }, function() {
           $scope.data.foursquare = {};
@@ -220,11 +226,19 @@ angular.module('myApp.view2', ['ngRoute'])
       });
     });
     SelectedLocation.setLocation({
-      display: '100 Montgomery Street, San Francisco, CA, United States',
+      display: '130 Vale Ave, San Francisco, CA, United States',
+      address: {
+        city: "San Francisco",
+        route: "Vale Avenue",
+        state: "CA",
+        street_address: "130 Vale Avenue",
+        street_number: "130",
+        zip: "94132"
+      },
       geometry: {
         location: {
-          lat: function() { return '37.7901932' },
-          lng: function() { return '-122.40199259999997' }
+          lat: function() { return '37.734905' },
+          lng: function() { return '-122.48385400000001' }
         }
       }
     });
