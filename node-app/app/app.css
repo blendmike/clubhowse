@@ -482,6 +482,12 @@ body {
   font-family: "Open Sans", sans-serif;
   color:#1D1D26;
   text-transform: uppercase;
+  background: rgba(0, 70, 115, .7);
+  padding:20px;
+  color:#fff;
+  margin-bottom:50px !important;
+  float:left;
+  width: 100%;
 }
 
 
@@ -1156,6 +1162,8 @@ form p {
 
 
 
+
+
 .address-search{
   width:50%;
   position: absolute;
@@ -1195,24 +1203,40 @@ form p {
 
   .blog article .nightlife img, .blog article .outdoors img, .blog article .foods img, .blog article .coffees img, .blog article .shop img, .blog article .sights img{
     width:100px;
+    height:100px;
+    border-radius: 50%;
     float: left;
+    margin-right:15px;
+    position: absolute;
   }
 
   .blog article ul li{
     float:left;
     width:31%;
-    height:200px;
+    height:150px;
     margin:0 1%;
   }
 
   .blog article ul li h3{
     padding:0;
     margin:0;
+    font-family: "Roboto";
+    font-size:1.5em;
+    margin-top:15px;
+    padding-left:120px;
   }
+
+ .blog article ul li p, .blog article ul li span{
+    padding:0;
+    margin:0;
+    padding-left:120px;
+ }
+
 
   .photo-container img{
     margin-left:-5px;
     height:110px;
+    
   }
 
   .photo-container{
@@ -1256,7 +1280,7 @@ form p {
     margin-bottom:0;
     background:url(../app/img/main-pin.png) no-repeat left center;
     padding-left:60px;
-    width:50%;
+    width:100%;
     position: relative;
     z-index: 999;
     height:55px;
