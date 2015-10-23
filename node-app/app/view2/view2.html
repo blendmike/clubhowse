@@ -68,14 +68,15 @@
 
               <article class="overview" >
                 <div class="wrapped-content">
-                  <h2>An overview of {{neighborhood}}</h2>                  
+                  <h2>An overview of {{loc.address.city}}</h2>                  
                 </div>
 
                 
                 
 
                 <div class="wrapped-content col-md-6">
-                  <p>
+                  <p ng-init="runWiki()">
+                    {{wiki}}
                     We’re not living in the “post-PC” era. Not by a long shot. As more of us work from home, or the plane, or the <a href="#">coffee shop</a>, laptops might be more. Aside post format. Important than they’ve ever been. They’ve also <strong>become harder</strong> and harder to buy, as hardware specs have hit.
                   </p>
                 </div>

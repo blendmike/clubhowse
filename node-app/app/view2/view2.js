@@ -9,7 +9,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', function($scope, SelectedLocation, FoursquareAPI) {
+.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', '$http', function($scope, SelectedLocation, FoursquareAPI, $http) {
 
 
   $('.portfolio-grid article a, .button, button, input[type="submit"], input[type="reset"], input[type="button"], #header a, .header-button, #nav-container a, .nav-child-container, .gallery-container a, #ps-custom-back').on('hover', function(event) {
@@ -179,10 +179,29 @@ angular.module('myApp.view2', ['ngRoute'])
 
     $scope.data = {};
     SelectedLocation.setDoWithLocation(function(loc) {
-      console.log(loc);
+
+
+
+
+      
       $scope.loc = loc;
+
+
       $scope.data = {};
+      if ($scope.loc.address) {
+        $.ajax({
+          url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles="+$scope.loc.address.city,
+          dataType: "jsonp",
+           success: function( response ) {
+              var obj_ = response.query.pages;
+              var value_ = obj_[Object.keys(obj_)[0]];
+              $scope.wiki = value_.extract;
+          }
+      });
+      }
       if ($scope.loc.geometry) {
+        console.log($scope.loc);
+        
         FoursquareAPI.explore(loc).then(function(response) {
           $scope.data.foursquare = response.data;
           $scope.data.photos = shuffleIn($scope.data.photos, response.photos);
