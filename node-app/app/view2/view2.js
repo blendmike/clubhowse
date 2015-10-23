@@ -9,7 +9,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
+.controller('View2Ctrl', ['$scope', 'SelectedLocation', 'FoursquareAPI', function($scope, SelectedLocation, FoursquareAPI) {
 
                function initialize() {
 
@@ -63,7 +63,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 
   /* Sidebar multi-level menu */
-  
+
   $('.nav-child-container').on('click', function(event) {
     event.preventDefault();
     var $this = $(this);
@@ -82,7 +82,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 
   /* Sidebar Functionality */
-  
+
   var opened = false;
   $('#menu-trigger-close').on('click', function(){
     $('#menu-trigger').trigger('click');
@@ -100,7 +100,7 @@ angular.module('myApp.view2', ['ngRoute'])
       opened = true;
     }
   });
-    
+
   $('.nav a').bind('click', function(event) {
     event.preventDefault();
     var path = $(this).attr('href');
@@ -112,7 +112,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 
   /* Swipe menu support */
-    
+
   // $('.touch-gesture #content').hammer().on('swiperight', function(event) {
   //   $('#content-container').addClass('active');
   //   $('#sidemenu').addClass('active');
@@ -126,7 +126,7 @@ angular.module('myApp.view2', ['ngRoute'])
   //     opened = true;
   //   }
   // });
-  
+
   // $('.touch-gesture #content').hammer().on('swipeleft', function(event) {
   //   $('#content-container').removeClass('active');
   //   $('#sidemenu').removeClass('active');
@@ -150,7 +150,7 @@ angular.module('myApp.view2', ['ngRoute'])
   * If yes, then it will expand the menu by default.
   *
   **/
-  
+
   var $navItems = $('.nav ul li a');
 
   $navItems.each(function(index){
@@ -216,4 +216,18 @@ angular.module('myApp.view2', ['ngRoute'])
   **/
 
   //$('form').h5Validate();
+
+    // Data apis
+    $scope.data = {};
+    SelectedLocation.setDoWithLocation(function(loc) {
+      $scope.loc = loc;
+      if ($scope.loc.geo) {
+        FoursquareAPI.explore(loc).then(function(response) {
+          $scope.data.foursquare = response;
+        }, function() {
+          $scope.data.foursquare = {};
+        });
+      }
+    })
+    SelectedLocation.setLocation({display: '100 Montgomery Street, San Francisco, CA, United States', geo: { lat: '37.7901932', lng: '-122.40199259999997' } })
 }]);

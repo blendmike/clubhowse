@@ -66,7 +66,6 @@ angular.module('myApp.services', [])
           result[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
-                console.log(item);
                 return {
                   name: item.venue.name,
                   location: item.venue.location,
