@@ -62,6 +62,7 @@ angular.module('myApp.services', [])
       })
     };
 
+    var URL_BASE = "https://foursquare.com/v/";
     var explore = function(loc) {
       var deferred = $q.defer();
       var awaiting = SECTIONS.length;
@@ -71,12 +72,14 @@ angular.module('myApp.services', [])
           result.data[section] = _.flatten(
             _.map(response.data.response.groups, function(group) {
               return _.map(group.items, function(item) {
+                console.log(item);
                 var obj = {
                   name: item.venue.name,
                   location: item.venue.location,
                   details: {
                     hours: item.venue.hours
-                  }
+                  },
+                  url: URL_BASE + item.venue.id
                 };
                 if (item.venue.featuredPhotos) {
                   obj.photos = _.compact(_.map(item.venue.featuredPhotos.items, function(item) {
@@ -97,7 +100,7 @@ angular.module('myApp.services', [])
                       result.photos.push(url);
                       return { url: url };
                     }));
-                  }))
+                  }));
                 }
                 return obj;
               })
