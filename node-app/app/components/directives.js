@@ -51,8 +51,10 @@ angular.module('myApp.directives', [])
                 }
               });
               if (!loc.address.street_address) {
-                if (loc.address.street_number) {
+                if (loc.address.street_number && loc.address.route) {
                   loc.address.street_address = loc.address.street_number + " " + loc.address.route;
+                } else {
+                  loc.address.street_address = loc.display.split(",", 2)[0];
                 }
               }
 
