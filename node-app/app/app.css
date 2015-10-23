@@ -126,7 +126,7 @@ html, body, p {
 
 .logo{
   position: absolute;
-  width:40%;
+  width:100%;
   text-align: center;
   left:25%;
   top:-80px;
