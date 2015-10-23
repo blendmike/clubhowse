@@ -82,7 +82,7 @@ angular.module('myApp.services', [])
                   url: URL_BASE + item.venue.id
                 };
                 obj.location.distance = obj.location.distance / METERS_PER_MILE;
-                if (obj.location.distance >= 1) {
+                if (obj.location.distance >= 10) {
                   obj.location.distance = _.round(obj.location.distance);
                 } else {
                   obj.location.distance = _.round(obj.location.distance, 1);
