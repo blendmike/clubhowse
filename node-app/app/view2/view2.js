@@ -96,8 +96,8 @@ angular.module('myApp.view2', ['ngRoute'])
   // });
 
 
-
-               function initialize() {
+    var maps = []
+    $scope.initializeMap = function() {
 
   // Create an array of styles.
   var styles = [{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}];
@@ -116,19 +116,18 @@ angular.module('myApp.view2', ['ngRoute'])
 
   // Create a map object, and include the MapTypeId to add
   // to the map type control.
+  var loc = SelectedLocation.loc();
   var mapOptions = {
     zoom: 11,
-    center: new google.maps.LatLng(55.6468, 37.581),
+    center: new google.maps.LatLng(loc.geometry.location.lat(), loc.geometry.location.lng()),
     disableDefaultUI: true,
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
     }
   };
-  var map = new google.maps.Map(document.getElementById('map'),
-    mapOptions);
-
-    var mapTwo = new google.maps.Map(document.getElementById('map-two'),
-    mapOptions);
+  var map = new google.maps.Map(document.getElementById('map'),mapOptions);
+  var mapTwo = new google.maps.Map(document.getElementById('map-two'), mapOptions);
+  maps.push(map, mapTwo);
 
 
   //Associate the styled map with the MapTypeId and set it to display.
@@ -138,11 +137,6 @@ angular.module('myApp.view2', ['ngRoute'])
   mapTwo.mapTypes.set('map_style', styledMapTwo);
   mapTwo.setMapTypeId('map_style');
 }
-
-
-  setTimeout(function(){
-    google.maps.event.addDomListener(window, 'load', initialize());
-  }, 500)
 
 
 
@@ -173,10 +167,9 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
     $scope.data = {};
-      SelectedLocation.setDoWithLocation(function(loc) {
+    SelectedLocation.setDoWithLocation(function(loc) {
       $scope.loc = loc;
-      console.log($scope.loc);
-      if ($scope.loc.geo) {
+      if ($scope.loc.geometry) {
         FoursquareAPI.explore(loc).then(function(response) {
           $scope.data.foursquare = response;
           console.log($scope.data);
@@ -184,6 +177,22 @@ angular.module('myApp.view2', ['ngRoute'])
           $scope.data.foursquare = {};
         });
       }
-    })
-    SelectedLocation.setLocation({display: '100 Montgomery Street, San Francisco, CA, United States', geo: { lat: '37.7901932', lng: '-122.40199259999997' } })
+      _.each(maps, function (map) {
+        if (loc.geometry.viewport) {
+          map.fitBounds(loc.geometry.viewport);
+        } else {
+          map.setCenter(loc.geometry.location);
+          map.setZoom(17);  // Why 17? Because it looks good.
+        }
+      });
+    });
+    SelectedLocation.setLocation({
+      display: '100 Montgomery Street, San Francisco, CA, United States',
+      geometry: {
+        location: {
+          lat: function() { return '37.7901932' },
+          lng: function() { return '-122.40199259999997' }
+        }
+      }
+    });
 }]);

@@ -17,9 +17,14 @@ angular.module('myApp.services', [])
       todoWithLocation = newTodoWithLocation;
     };
 
+    var getLoc = function() {
+      return loc;
+    };
+
     return {
       setLocation: setLocation,
-      setDoWithLocation: setDoWithLocation
+      setDoWithLocation: setDoWithLocation,
+      loc: getLoc
     }
   }])
 
@@ -50,7 +55,7 @@ angular.module('myApp.services', [])
 
     var exploreSection = function(loc, section) {
       return request("venues/explore", {
-        ll: loc.geo.lat + ", " + loc.geo.lng,
+        ll: loc.geometry.location.lat() + ", " + loc.geometry.location.lng(),
         section: section,
         limit: 50,
         venuePhotos: 1
