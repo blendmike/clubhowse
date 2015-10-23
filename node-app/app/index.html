@@ -18,6 +18,65 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+<script src="js/citysdk.js" type="text/javascript"></script>
+<script src="js/citysdk.census.js" text="text/javascript"></script>
+
+
+
+<script>
+
+
+function EIAModule() {
+    this.enabled = false;
+};
+
+EIAModule.prototype.enable = function(apiKey) {
+    this.apiKey = apiKey;
+    this.enabled = true;
+};
+
+CitySDK.prototype.modules.eia = new EIAModule();
+
+ EIAModule.prototype.categoryRequest = function(request, callback) {
+                    var apiKeyPattern = /({apiKey})/;
+                    var categoryPattern = /({category})/;
+
+                    var categoryURL = "http://api.eia.gov/category/?api_key={c41228253f5c827ddb4dc9c2b78b96724c482402}&category_id={05}";
+
+                    categoryURL = categoryURL.replace(apiKeyPattern, this.apiKey);
+                    categoryURL = categoryURL.replace(categoryPattern, request.category);
+
+                    CitySDK.prototype.sdkInstance.ajaxRequest(categoryURL).done(function(response) {
+                        response = $.parseJSON(response);
+                        console.log(response);
+                    });
+
+                };
+            
+
+
+var sdk = new CitySDK();
+var censusModule = sdk.modules.census;
+
+censusModule.enable("c41228253f5c827ddb4dc9c2b78b96724c482402");
+
+     var request = {
+                "lat": 38.9047,
+                "lng": -77.0164,
+                "level": "state",
+                "variables": [
+                    "income",
+                    "population"
+                ]
+            };
+
+            census.APIRequest(request, function(response) {
+
+                console.log(response);
+            });
+
+</script>
+
 
 </head>
 <body class="touch-gesture">
