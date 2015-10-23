@@ -625,7 +625,7 @@ body {
   overflow: hidden;
   position: relative; }
 .blog article:nth-child(even){
-  background:#fff;
+  /*background:#fff;*/
 }
   .blog article .title {
     text-transform: uppercase;
@@ -1322,22 +1322,119 @@ form p {
     height:100px;
     border-radius: 50%;
     margin-right:15px;
+    margin-bottom:15px;
   }
+  .blog article ul{
+    padding:0;
 
+  }
   .blog article ul li{
     float:left;
     width:31%;
-    height:150px;
-    margin:0 1%;
+    height:250px;
+    margin:0;
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    position: relative;
   }
+
+
+  .blog article ul li a{
+    text-decoration: none;
+  }
+
+
+
+  .blog article ul li:after{
+    content : 'view more';
+    position: absolute;
+    opacity: 0;
+    top:83%;
+    width:80%;
+    text-align: center;
+    background:#50d2c2;
+    border-radius: 5px;
+    padding:5px 10px;
+    color:#fff;
+    font-size:12px;
+          -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+
+  }
+
+  .blog article ul li:hover img, .blog article ul li:hover h3{
+      -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    opacity: 1;
+  }
+
+   .blog article ul li:hover img, .blog article ul li:hover h3{
+    opacity: .5;
+   }
+
+   .blog article ul li:hover:after{
+    opacity: 1;
+   }
 
   .blog article ul li h3{
     padding:0;
     margin:0;
     font-family: "Roboto";
-    font-size:1.5em;
-    margin-top:15px;
+    font-size:1em;
+    margin-top:0px;
+    width:90%;
+    color:#4b4b4b !important;
   }
+
+
+  .blog article ul li span{
+    display: block;
+    line-height: 1.4em;
+    color:#4b4b4b !important;
+
+  }
+
+
+    .blog article ul li p{
+      margin-bottom:5px;
+    }
+
+
+  .blog article ul li span.distance{
+    font-size:13px;
+    opacity: .8;
+  }
+
+
+    .blog article ul li label{
+        background:#ff4d70;
+        width:10px;
+        height:10px;
+        display: block;
+        border-radius: 50%;
+        float:left;
+        margin-top:4px;
+        margin-right:5px;
+    }
+
+    .blog article ul li .open{
+        background-color:#5dd9cd !important; 
+        width:10px;
+        height:10px;
+        display: block;
+        border-radius: 50%;
+
+    }
+
+    li.homes:hover:after{
+      display: none;
+      opacity: 0;
+    }
 
 
 
@@ -1357,13 +1454,31 @@ form p {
     background:none;
     border:none;
     width:50%;
-    background:rgba(255, 255, 255, .1) url(../app/img/address-search.png) no-repeat 98% center;
+    background:rgba(255, 255, 255, .2) url(../app/img/address-search.png) no-repeat 98% center;
     background-size:25px;
     float:right;
     height:50px;
     margin-top:0;
     color:#fff;
+
+
   }
+
+  ::-webkit-input-placeholder {
+   color: #fff;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+:-ms-input-placeholder {  
+   color: #fff;  
+}
 
   #header .main-info{
     float:left;

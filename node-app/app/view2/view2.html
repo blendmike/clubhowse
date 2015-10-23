@@ -47,7 +47,8 @@
                       <!-- Header -->
 
             <header id="header">
-              <div id="menu-trigger" class="header-button left"></div>
+              <img width="150" style="margin-left:20px;margin-top:20px;" src="../app/img/clubhowse-12.svg" />
+              <!-- <div id="menu-trigger" class="header-button left"></div> -->
               <input type="text" id="address-search" google-maps-input />
               <!-- <h1><a class='current' href="index.html">N<span class="icon-clock-1"></span>W</a></h1> -->
               <div class="main-info">
@@ -75,16 +76,51 @@
                 
 
                 <div class="wrapped-content col-md-6">
-                  <p ng-init="runWiki()">
+
+                 <h2>Overview</h2>
+                    <ul>
+                      <li class="homes">
+                          
+                      <span class="price">${{data.zillow.principal.zestimate.amount.__text}}</span>
+                           <span class="neighboorhood">{{data.zillow.principal.localRealEstate.region._name}}</span>
+                          <span class="high">${{data.zillow.principal.zestimate.valuationRange.high.__text}}</span>
+                          <span class="low">${{data.zillow.principal.zestimate.valuationRange.low.__text}}</span>
+                          <a href="{{data.zillow.principal.links.comparables}}" target="_blank">Comparables</a>
+                          <a href="{{data.zillow.principal.links.graphsanddata}}" target="_blank">Graphs and Data</a>
+                          <a href="{{data.zillow.principal.links.homedetails}}" target="_blank">Home Details</a>
+                          <a href="{{data.zillow.principal.links.mapthishome}}" target="_blank">Map This Home</a>
+                      </li>
+                    </ul>
+
+
+
+                  <!-- <p ng-init="runWiki()">
                     {{wiki}}
-                    We’re not living in the “post-PC” era. Not by a long shot. As more of us work from home, or the plane, or the <a href="#">coffee shop</a>, laptops might be more. Aside post format. Important than they’ve ever been. They’ve also <strong>become harder</strong> and harder to buy, as hardware specs have hit.
-                  </p>
+                  </p> -->
                 </div>
 
                 <div class="wrapped-content col-md-4 map">
                   <div id="map-two"></div>
                 </div>
+                <div class="wrapped-content col-md-12 map">
+
+
+                    <h2>Comparable Homes</h2>
+                    <ul>
+                      <li class="homes" ng-repeat="house in data.zillow.comparables | limitTo:6">
+                          <p>{{house.address.street}} {{house.address.city}} {{house.address.state}} {{house.address.zip}}</p>
+                          <span class="price">${{house.zestimate.amount.__text}}</span>
+                          <span class="neighboorhood">{{house.localRealEstate.region._name}}</span>
+                          <span class="high">${{house.zestimate.valuationRange.high.__text}}</span>
+                          <span class="low">${{house.zestimate.valuationRange.low.__text}}</span>
+                          <a href="{{house.links.comparables}}" target="_blank">Comparables</a>
+                          <a href="{{house.links.graphsanddata}}" target="_blank">Graphs and Data</a>
+                          <a href="{{house.links.homedetails}}" target="_blank">Home Details</a>
+                          <a href="{{house.links.mapthishome}}" target="_blank">Map This Home</a>
+                      </li>
+                    </ul>
                  </div>
+                </div>
               </article>
 
 
@@ -110,119 +146,129 @@
                 </div>
               </article> -->
 
-               <article class="coffees">
+               <article class="col-md-6 coffees">
                  <div class="wrapped-content">
                     <h2>Cafe <span>{{data.scores.coffee}}</span></h2>
                      <ul class="coffees">
-                      <li ng-repeat="coffees in data.foursquare.coffee | limitTo:9">
+                      <li ng-repeat="coffees in data.foursquare.coffee | limitTo:6">
+                      <a href="{{coffees.url}}" target="_blank">
                         <img src="{{coffees.photos[0].url}}" />
                         <h3>{{coffees.name}}<h3>
                         <p>{{coffees.location.formattedAddress[0]}}</p>
+                      <label ng-class="{'open' : coffees.details.hours.isOpen}"></label>
                         <span class="hours">{{coffees.details.hours.status}}</span>
-                        <span class="open-now" ng-class="{{coffees.details.hours.isOpen}}"></span>
-                        <span class="distance">{{coffees.location.distance}}</span>
-
+                        <span class="distance">{{coffees.location.distance}} m</span>
+                        </a>
                       </li>
                     </ul>
                   </div>
               </article>
 
-              <article class="shop">
+              <article class="col-md-6 shop">
                 <div class="wrapped-content">
                    <h2>Shopping <span>{{data.scores.shops}}</span></h2>
                    <ul class="shop">
-                    <li ng-repeat="shop in data.foursquare.shops | limitTo:9">
+                    <li ng-repeat="shop in data.foursquare.shops | limitTo:6">
+                    <a href="{{shop.url}}" target="_blank">
                       <img src="{{shop.photos[0].url}}" />
                       <h3>{{shop.name}}<h3>
                       <p>{{shop.location.formattedAddress[0]}}</p>
+                      <label ng-class="{'open' : shop.details.hours.isOpen}"></label>
                       <span class="hours">{{shop.details.hours.status}}</span>
-                      <span class="open-now" ng-class="{{shop.details.hours.isOpen}}"></span>
-                      <span class="distance">{{shop.location.distance}}</span>
-
+                      <span class="distance">{{shop.location.distance}} m</span>
+ </a>
                     </li>
                   </ul>
                 </div>
               </article>
 
-              <article class="foods">
+              <article class="col-md-6 foods">
                 <div class="wrapped-content">
                 <h2>Food <span>{{data.scores.food}}</span></h2>
                  <ul class="foods">
-                  <li ng-repeat="foods in data.foursquare.food | limitTo:9">
+                  <li ng-repeat="foods in data.foursquare.food | limitTo:6">
+                  <a href="{{foods.url}}" target="_blank">
                     <img src="{{foods.photos[0].url}}" />
                     <h3>{{foods.name}}<h3>
                     <p>{{foods.location.formattedAddress[0]}}</p>
+                      <label ng-class="{'open' : foods.details.hours.isOpen}"></label>
                     <span class="hours">{{foods.details.hours.status}}</span>
-                    <span class="open-now" ng-class="{{foods.details.hours.isOpen}}"></span>
-                    <span class="distance">{{foods.location.distance}}</span>
+                    <span class="distance">{{foods.location.distance}} m</span>
+                     </a>
                   </li>
                 </ul>
                 </div>
               </article>
 
-              <article class="nightlife">
+              <article class="col-md-6 nightlife">
                <div class="wrapped-content">
                 <h2>Nightlife <span>{{data.scores.drinks}}</span></h2>
                 <ul class="nightlife">
-                  <li ng-repeat="drink in data.foursquare.drinks | limitTo:9">
+                  <li ng-repeat="drink in data.foursquare.drinks | limitTo:6">
+                  <a href="{{drink.url}}" target="_blank">
                     <img src="{{drink.photos[0].url}}" />
                     <h3>{{drink.name}}<h3>
                     <p>{{drink.location.formattedAddress[0]}}</p>
+                      <label ng-class="{'open' : drink.details.hours.isOpen}"></label>
                     <span class="hours">{{drink.details.hours.status}}</span>
-                    <span class="open-now" ng-class="{{drink.details.hours.isOpen}}"></span>
-                    <span class="distance">{{drink.location.distance}}</span>
-
+                    <span class="distance">{{drink.location.distance}} m</span>
+ </a>
                   </li>
                 </ul>
               </div>
               </article>
 
-            <!--   <article class="education">
+            <!--   <article class="col-md-6 education">
                 <div class="wrapped-content">
                   <h2>Education</h2>
                 </div>
               </article>
 
-              <article class="transportation">
+              <article class="col-md-6 transportation">
                 <div class="wrapped-content">
                   <h2>Transportation</h2>
                 </div<
               </article> -->
 
-           <!--    <article class="weather">
+           <!--    <article class="col-md-6 weather">
                 <div class="wrapped-content">
                   <h2>Weather</h2>
                 </div>
               </article>
  -->
-              <article class="outdoors">
+              <article class="col-md-6 outdoors">
                 <div class="wrapped-content">
                 <h2>Recreation <span>{{data.scores.outdoors}}</span></h2>
                  <ul class="outdoors">
-                  <li ng-repeat="outdoor in data.foursquare.outdoors | limitTo:9">
+                  <li ng-repeat="outdoor in data.foursquare.outdoors | limitTo:6">
+                  <a href="{{outdoor.url}}" target="_blank">
                     <img src="{{outdoor.photos[0].url}}" />
                     <h3>{{outdoor.name}}<h3>
                     <p>{{outdoor.location.formattedAddress[0]}}</p>
+                                          <label ng-class="{'open' : outdoor.details.hours.isOpen}"></label>
+
                     <span class="hours">{{outdoor.details.hours.status}}</span>
-                    <span class="open-now" ng-class="{{outdoor.details.hours.isOpen}}"></span>
-                    <span class="distance">{{outdoor.location.distance}}</span>
+                    <span class="distance">{{outdoor.location.distance}} m</span>
+                     </a>
                   </li>
                 </ul>
               </div>
               </article>
 
 
-              <article class="things-to-see">
+              <article class="col-md-6 things-to-see">
                 <div class="wrapped-content">
                   <h2>Things to see <span>{{data.scores.sights}}</span></h2>
                    <ul class="sights">
-                    <li ng-repeat="sight in data.foursquare.sights | limitTo:9">
+                    <li ng-repeat="sight in data.foursquare.sights | limitTo:6">
+                    <a href="{{sight.url}}" target="_blank">
                       <img src="{{sight.photos[0].url}}" />
                       <h3>{{sight.name}}<h3>
                       <p>{{sight.location.formattedAddress[0]}}</p>
+                      <label ng-class="{'open' : sight.details.hours.isOpen}"></label>
                       <span class="hours">{{sight.details.hours.status}}</span>
-                      <span class="open-now" ng-class="{{sight.details.hours.isOpen}}"></span>
-                      <span class="distance">{{sight.location.distance}}</span>
+                      <span class="distance">{{sight.location.distance}} m</span>
+                       </a>
                     </li>
                   </ul>
                 </div>
