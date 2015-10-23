@@ -112,11 +112,138 @@
 * Styles
 *
 **/
+
+body{
+  overflow-x:hidden;
+}
 html, body, p {
   color: #6b6b6b;
   font-weight: 400;
   font-size: 14px;
   font-family: "Open Sans", sans-serif; }
+
+
+
+.logo{
+  position: absolute;
+  width:40%;
+  text-align: center;
+  left:25%;
+  top:-80px;
+  margin-top:0;
+
+}
+
+video{
+  opacity: .5;
+}
+
+.overlay{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(245, 245, 245, .80);
+}
+
+
+.home-top{
+  margin-top:15%;
+  float:left;
+  position: relative;
+  width:50%;
+  margin-left:25%;
+  height:50%;
+}
+
+.home-top h3{
+  width:80%;
+  text-align: center;
+  font-size:32px;
+  line-height: 42px;
+  margin-bottom:50px;
+  color:#ff4d70;
+  text-transform: lowercase;
+  font-family: "open sans";
+  margin-left:10%;
+}
+
+.address-search{
+  width:100%;
+  position: absolute;
+  margin-top:20px;
+  height:60px;
+  border-radius: 25px !important;
+  font-size:22px;
+
+  padding:20px 40px !important;
+  background:#fff url(../app/img/search-icon.png) no-repeat 98% center !important;
+  background-size:25px !important;
+}
+
+    .bottom-section{
+      height:100%;
+      position: absolute;
+      margin-top:60%;
+      float:left;
+    }
+
+    .bottom-section article{
+      min-height:300px;
+      width:40%;
+      margin:0 auto;
+    }
+
+    .bottom-section article h2{
+      font-size:28px;
+      margin-top:15px;
+      padding-top:15px;
+   }
+
+    .bottom-section article img{
+      width:175px;
+      border-radius: 50%;
+      border:#eee 4px solid;
+      float:left;
+      margin-right:50px;
+    }
+
+    .bottom-section article.top-art h2{
+      color:#ffb258;
+    }
+    .bottom-section article.mid-art h2{
+      color:#003273;
+      
+    }
+    .bottom-section article.bottom-art h2{
+     color:#50d2c2;
+
+    }
+
+    footer{
+      border-top:#ddd 1px solid;
+      height:150px;
+      width:100%;
+      float:left;      
+      margin-top:50px;
+    }
+
+
+    footer ul{
+      float:left;
+    }
+
+    footer ul li{
+      display: inline-block;
+      margin-top:50px;
+      margin-left:25px;
+    }
+    footer p{
+      float:right;
+      margin-right:50px;
+      margin-top:50px;
+    }
 
 p {
   margin: 1em 0;
@@ -1162,18 +1289,6 @@ form p {
 
 
 
-
-
-.address-search{
-  width:50%;
-  position: absolute;
-  top:20%;
-  height:60px;
-  border-radius: 40px !important;
-  left:25%;
-  font-size:32px;
-  padding:20px 40px !important;
-}
 
 
 
