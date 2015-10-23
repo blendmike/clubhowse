@@ -178,7 +178,7 @@ angular.module('myApp.view2', ['ngRoute'])
     }
 
     $scope.data = {};
-    SelectedLocation.setDoWithLocation(function(loc) {
+    var doWithLoc = function(loc) {
 
 
 
@@ -190,12 +190,12 @@ angular.module('myApp.view2', ['ngRoute'])
         $.ajax({
           url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles="+$scope.loc.address.city,
           dataType: "jsonp",
-           success: function( response ) {
-              var obj_ = response.query.pages;
-              var value_ = obj_[Object.keys(obj_)[0]];
-              $scope.wiki = value_.extract;
+          success: function( response ) {
+            var obj_ = response.query.pages;
+            var value_ = obj_[Object.keys(obj_)[0]];
+            $scope.wiki = value_.extract;
           }
-      });
+        });
       }
       if ($scope.loc.address) {
         ZillowAPI.search(loc).then(function(response) {
@@ -224,22 +224,28 @@ angular.module('myApp.view2', ['ngRoute'])
           map.setZoom(17);  // Why 17? Because it looks good.
         }
       });
-    });
-    SelectedLocation.setLocation({
-      display: '130 Vale Ave, San Francisco, CA, United States',
-      address: {
-        city: "San Francisco",
-        route: "Vale Avenue",
-        state: "CA",
-        street_address: "130 Vale Avenue",
-        street_number: "130",
-        zip: "94132"
-      },
-      geometry: {
-        location: {
-          lat: function() { return '37.734905' },
-          lng: function() { return '-122.48385400000001' }
+    };
+    SelectedLocation.setDoWithLocation(doWithLoc);
+    var loc = SelectedLocation.loc();
+    if (!loc) {
+      SelectedLocation.setLocation({
+        display: '130 Vale Ave, San Francisco, CA, United States',
+        address: {
+          city: "San Francisco",
+          route: "Vale Avenue",
+          state: "CA",
+          street_address: "130 Vale Avenue",
+          street_number: "130",
+          zip: "94132"
+        },
+        geometry: {
+          location: {
+            lat: function() { return '37.734905' },
+            lng: function() { return '-122.48385400000001' }
+          }
         }
-      }
-    });
+      });
+    } else {
+      doWithLoc(loc);
+    }
 }]);
