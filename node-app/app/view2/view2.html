@@ -110,8 +110,64 @@
                 <h2>Salaries</h2>
               </article>
 
-              <article class="eat-drink">
-                <h2>Eat and Drink</h2>
+               <article class="coffees">
+                <h2>Cafe</h2>
+                 <ul class="coffees">
+                  <li ng-repeat="coffees in data.foursquare.coffee | limitTo:10">
+                    <img src="{{coffees.photos[0].url}}" />
+                    <h3>{{coffees.name}}<h3>
+                    <p>{{coffees.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{coffees.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{coffees.details.hours.isOpen}}"></span>
+                    <span class="distance">{{coffees.location.distance}}</span>
+
+                  </li>
+                </ul>
+              </article>
+
+              <article class="shop">
+                <h2>Shopping</h2>
+                 <ul class="shop">
+                  <li ng-repeat="shop in data.foursquare.shops | limitTo:10">
+                    <img src="{{shop.photos[0].url}}" />
+                    <h3>{{shop.name}}<h3>
+                    <p>{{shop.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{shop.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{shop.details.hours.isOpen}}"></span>
+                    <span class="distance">{{shop.location.distance}}</span>
+
+                  </li>
+                </ul>
+              </article>
+
+              <article class="foods">
+                <h2>Food</h2>
+                 <ul class="foods">
+                  <li ng-repeat="foods in data.foursquare.food | limitTo:10">
+                    <img src="{{foods.photos[0].url}}" />
+                    <h3>{{foods.name}}<h3>
+                    <p>{{foods.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{foods.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{foods.details.hours.isOpen}}"></span>
+                    <span class="distance">{{foods.location.distance}}</span>
+
+                  </li>
+                </ul>
+              </article>
+
+              <article class="nightlife">
+                <h2>Nightlife</h2>
+                <ul class="nightlife">
+                  <li ng-repeat="drink in data.foursquare.drinks | limitTo:10">
+                    <img src="{{drink.photos[0].url}}" />
+                    <h3>{{drink.name}}<h3>
+                    <p>{{drink.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{drink.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{drink.details.hours.isOpen}}"></span>
+                    <span class="distance">{{drink.location.distance}}</span>
+
+                  </li>
+                </ul>
               </article>
 
               <article class="education">
@@ -126,50 +182,39 @@
                 <h2>Weathers</h2>
               </article>
 
-              <article class="parks">
-                <h2>Parks</h2>
+              <article class="outdoors">
+                <h2>Outdoors</h2>
+                 <ul class="outdoors">
+                  <li ng-repeat="outdoor in data.foursquare.outdoors | limitTo:10">
+                    <img src="{{outdoor.photos[0].url}}" />
+                    <h3>{{outdoor.name}}<h3>
+                    <p>{{outdoor.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{outdoor.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{outdoor.details.hours.isOpen}}"></span>
+                    <span class="distance">{{outdoor.location.distance}}</span>
+
+                  </li>
+                </ul>
               </article>
 
 
-            <article id="format-link" class="format-link">
-                  <p class="icon-bg icon-link"></p>
-                <div class="wrapped-content">
-                    <a href="http://jansimecek.com/themes/">jansimecek.com/themes/</a>
-                    <p class="link-description">Link post <mark class="yellow">description</mark>, here you can <strong>describe</strong> the actuall meaning of this link to prevent missleading.</p>
-                </div>
-            </article>
+              <article class="things-to-see">
+                <h2>Things to see</h2>
+                 <ul class="sights">
+                  <li ng-repeat="sight in data.foursquare.sights | limitTo:10">
+                    <img src="{{sight.photos[0].url}}" />
+                    <h3>{{sight.name}}<h3>
+                    <p>{{sight.location.formattedAddress[0]}}</p>
+                    <span class="hours">{{sight.details.hours.status}}</span>
+                    <span class="open-now" ng-class="{{sight.details.hours.isOpen}}"></span>
+                    <span class="distance">{{sight.location.distance}}</span>
 
-
-              <article class="format-standard">
-                <div class="wrapped-content">
-                  <p class="title"><span class="category">Design</span> <span class="time">9, August</span></p>
-                  <h2><a href="blog-single-standard.html">Layoffs hit HTC America as the company struggles to turn itself around</a></h2>
-                </div>
-                <figure>
-                  <img src="assets/blog/blog04.jpg" alt="Layoffs hit HTC America as the company struggles to turn itself around">
-                </figure>
-                <div class="wrapped-content">
-                  <p>
-                    We’re not living in the “post-PC” era. Not by a long shot. As more of us work from home, or the plane, or the <a href="#">coffee shop</a>, laptops might be more. Aside post format. Important than they’ve ever been. They’ve also <strong>become harder</strong> and harder to buy, as hardware specs have hit.
-                  </p>
-                  <hr>
-                  <p class="read-more"><a href="blog-single-standard.html">Read More</a></p>
-                </div>
+                  </li>
+                </ul>
               </article>
 
 
-            <article id="format-aside" class="format-aside">
-                  <p class="icon-bg icon-attach"></p>
-                <div class="wrapped-content">
-                    <p>
-                      We’re not living in the “post-PC” era. Not by a long shot. As more of us work from home, or the plane</a>, or the coffee shop, laptops might be more. <mark class="yellow">Aside post format</mark>. Important than they’ve ever been. They’ve also <strong>become harder</strong> and harder to buy, as hardware specs have hit stratospheric heights while simultaneously somehow <a href="#">becoming</a> even more difficult to explain or differentiate.
-                    </p>
-                </div>
-            </article>
-
-          <div class="text-center" style="margin-bottom: 40px;">
-            <a href="#" class="button radius">Load More</a>
-          </div>
+           
 
             </div>
 

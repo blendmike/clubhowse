@@ -146,15 +146,6 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
 
-
-
-  /**
-  *
-  * Check if the child menu has an active item.
-  * If yes, then it will expand the menu by default.
-  *
-  **/
-
   var $navItems = $('.nav ul li a');
 
   $navItems.each(function(index){
@@ -171,36 +162,6 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
 
-  /**
-  *
-  * Flexslider
-  *
-  **/
-
-  // var $flexsliderContainer = $('.flexslider');
-
-  // if($flexsliderContainer.length > 0){
-  //   $flexsliderContainer.flexslider({
-  //     controlsContainer: ".flexslider-controls",
-  //     prevText: '<span class="icon-left-open-big"></span>',
-  //     nextText: '<span class="icon-right-open-big"></span>',
-  //     slideshowSpeed: 5000,
-  //     animationSpeed: 600,
-  //     slideshow: true,
-  //     smoothHeight: false,
-  //     animationLoop: true,
-  //   });
-  // }
-
-
-
-
-  /**
-  *
-  * Alert boxes
-  *
-  **/
-
   var $alertBoxes = $('.alert-box .close');
 
   $alertBoxes.on('click', function(event) {
@@ -211,19 +172,8 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 
 
-
-
-  /**
-  *
-  * H5 Validate - Form jQuery Validation
-  *
-  **/
-
-  //$('form').h5Validate();
-
-    // Data apis
     $scope.data = {};
-    SelectedLocation.setDoWithLocation(function(loc) {
+      SelectedLocation.setDoWithLocation(function(loc) {
       $scope.loc = loc;
       console.log($scope.loc);
       if ($scope.loc.geo) {

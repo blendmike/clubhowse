@@ -1156,6 +1156,19 @@ form p {
 
 
 
+.address-search{
+  width:50%;
+  position: absolute;
+  top:20%;
+  height:60px;
+  border-radius: 40px !important;
+  left:25%;
+  font-size:32px;
+  padding:20px 40px !important;
+}
+
+
+
 
 
 #header {
@@ -1176,6 +1189,10 @@ form p {
   font: 700px;
 
 }
+
+  .blog article .nightlife img, .blog article .outdoors img, .blog article .foods img, .blog article .coffees img, .blog article .shop img, .blog article .sights img{
+    width:200px;
+  }
 
   .photo-container img{
     margin-left:-5px;
