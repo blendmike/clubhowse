@@ -177,6 +177,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
     $scope.data = {};
     SelectedLocation.setDoWithLocation(function(loc) {
+      console.log(loc);
       $scope.loc = loc;
       $scope.data = {};
       if ($scope.loc.geometry) {
